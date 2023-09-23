@@ -1,0 +1,24 @@
+manifestVersion: subsquid.io/v0.1
+name: percobaanEVMIndexerABI
+version: 3
+description: "A squid that indexes percobaanEVMIndexerABI v3 on sepolia and mumbai"
+build:
+deploy:
+  addons:
+    rpc:
+      - eth-sepolia:http
+      - polygon-testnet:http
+  secrets: ["V3_DB_NAME", "V3_DB_HOST", "V3_DB_USER", "V3_DB_PASS", "PGSSLMODE"]
+  migrate:
+    cmd: ["echo"]
+
+  processor:
+    - name: eth-sepolia-processor
+      cmd: ["node", "lib/eth-sepolia/main"]
+    - name: polygon-mumbai-processor
+      cmd: ["node", "lib/polygon-mumbai/main"]
+
+scale:
+  dedicated: true
+  processor:
+    profile: medium

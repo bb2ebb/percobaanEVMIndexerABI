@@ -1,0 +1,20 @@
+archive: sepolia
+target:
+  type: postgres
+contracts:
+  - name: rental-factory
+    address: "0xBFee99da66025065Ba1d2237900fCc9997c7131f"
+    abi: ../../abi/rental-factory.json
+    range:
+      from: 39784442
+    events:
+      - RentalSafeDeployment
+  - name: rental-manager
+    address: "0xBFee99da66025065Ba1d2237900fCc9997c7131f"
+    abi: ../../abi/rental-manager.json
+    range:
+      from: 39784442
+    events:
+      - RentalStarted
+      - RentalStopped
+    functions: true
